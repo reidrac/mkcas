@@ -37,7 +37,7 @@ Type of block (10 times):
 
 The filename 6 chars, space padded.
 
-## Binary
+### Binary
 
 Starts with the block ID, followed by the block type and the filename.
 
@@ -49,13 +49,13 @@ Then the block ID is repeated, followed by 3 words (little endian):
 
 Finally comes the file data.
 
-## Basic
+### Basic
 
 Starts with the block ID, followed by the block type and the filename.
 
 Then the block ID is repeated, followed by tokenized basic data.
 
-## ASCII
+### ASCII
 
 Starts with the block ID, followed by the block type and the filename.
 
