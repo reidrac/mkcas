@@ -22,25 +22,27 @@
 #
 __version__ = "1.0"
 
-import sys
 import os
 from argparse import ArgumentParser
 
 DEF_ADDR = 0x4000
 TYPES = ("binary", "basic", "ascii", "custom")
 TYPE_BLOCK = {
-        "binary": bytes((0xd0 for _ in range(10))),
-        "basic": bytes((0xd3 for _ in range(10))),
-        "ascii": bytes((0xea for _ in range(10))),
-        }
+    "binary": bytes((0xd0 for _ in range(10))),
+    "basic": bytes((0xd3 for _ in range(10))),
+    "ascii": bytes((0xea for _ in range(10))),
+}
 
 BLOCK_ID = bytes((0x1f, 0xa6, 0xde, 0xba, 0xcc, 0x13, 0x7d, 0x74))
+
 
 def write_word(fd, word):
     fd.write(bytes((word & 0xff, word >> 8)))
 
+
 def auto_int(value):
     return int(value, 0)
+
 
 def main():
 
@@ -48,15 +50,16 @@ def main():
                             epilog="Copyright (C) 2018 Juan J Martinez <jjm@usebox.net>",
                             )
 
-    parser.add_argument("--version", action="version", version="%(prog)s "  + __version__)
+    parser.add_argument("--version", action="version",
+                        version="%(prog)s " + __version__)
     parser.add_argument("-a", "--add", dest="add", action="store_true",
-            help="append to the existing CAS file instead of creating a new one")
+                        help="append to the existing CAS file instead of creating a new one")
     parser.add_argument("--name", dest="name", default=None, type=str,
-            help="name to use for the file (limit 6 chars, defaults to the file name)")
+                        help="name to use for the file (limit 6 chars, defaults to the file name)")
     parser.add_argument("--addr", dest="addr", default=DEF_ADDR, type=auto_int,
-            help="address to load if binary file (default: 0x%04x)" % DEF_ADDR)
+                        help="address to load if binary file (default: 0x%04x)" % DEF_ADDR)
     parser.add_argument("--exec", dest="exec", default=DEF_ADDR, type=auto_int,
-            help="address to exec if binary file (default: 0x%04x)" % DEF_ADDR)
+                        help="address to exec if binary file (default: 0x%04x)" % DEF_ADDR)
     parser.add_argument("output", help="target .CAS file")
     parser.add_argument("type", help="file type", choices=TYPES)
     parser.add_argument("file", help="input file")
@@ -127,4 +130,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
