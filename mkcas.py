@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2018 by Juan J. Martinez <jjm@usebox.net>
+# Copyright (C) 2020 by Juan J. Martinez <jjm@usebox.net>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +47,7 @@ def auto_int(value):
 def main():
 
     parser = ArgumentParser(description="Make a CAS file for the MSX",
-                            epilog="Copyright (C) 2018 Juan J Martinez <jjm@usebox.net>",
+                            epilog="Copyright (C) 2020 Juan J Martinez <jjm@usebox.net>",
                             )
 
     parser.add_argument("--version", action="version",
@@ -60,6 +60,7 @@ def main():
                         help="address to load if binary file (default: 0x%04x)" % DEF_ADDR)
     parser.add_argument("--exec", dest="exec", default=DEF_ADDR, type=auto_int,
                         help="address to exec if binary file (default: 0x%04x)" % DEF_ADDR)
+
     parser.add_argument("output", help="target .CAS file")
     parser.add_argument("type", help="file type", choices=TYPES)
     parser.add_argument("file", help="input file")
