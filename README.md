@@ -8,6 +8,8 @@ It supports the following block types:
  * basic: tokenized BASIC code.
  * ascii: ASCII text, can be BASIC for example. In case of BASIC code, the CR
    LF is expected as end of line.
+ * custom-header: no block type, header with loading address and block length
+   followed by the data.
  * custom: no block type, data stored "as-is".
 
 Use `-h` flag to get command line help.

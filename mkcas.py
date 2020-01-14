@@ -26,7 +26,7 @@ import os
 from argparse import ArgumentParser
 
 DEF_ADDR = 0x4000
-TYPES = ("binary", "basic", "ascii", "custom")
+TYPES = ("binary", "basic", "ascii", "custom-header", "custom")
 TYPE_BLOCK = {
     "binary": bytes((0xd0 for _ in range(10))),
     "basic": bytes((0xd3 for _ in range(10))),
@@ -122,6 +122,15 @@ def main():
             write_word(out, end_addr)
             write_word(out, exec_addr)
 
+            out.write(data)
+
+        elif args.type == "custom-header":
+
+            addr = args.addr
+            length = len(data)
+
+            write_word(out, addr)
+            write_word(out, length)
             out.write(data)
 
         else:
